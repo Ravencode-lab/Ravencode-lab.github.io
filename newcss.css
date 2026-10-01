@@ -1,0 +1,9 @@
+.gallery p {
+    background: white;
+    margin: 0;
+    padding: 12px;
+    text-align: center;
+    color: #7c3049;
+    font-weight: 600;
+    font-size: 1rem;
+}

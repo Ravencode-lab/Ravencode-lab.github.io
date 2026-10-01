@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="newcss.css" rel="stylesheet" type="text/css"/>
+    
+    <title>Boldog 1. évfordulót </title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #fff8fa;
+            color: #4a3038;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           HÁTTÉR SZÍVECskék
+        ========================= */
+
+        .hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 20px;
+            opacity: 0.5;
+            animation: floatHeart linear infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.5;
+            }
+
+            90% {
+                opacity: 0.4;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           NAVIGÁCIÓ
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            background: rgba(255, 248, 250, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(180, 80, 110, 0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #7c4052;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #d65a7c;
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+            position: relative;
+            z-index: 1;
+            background:
+                radial-gradient(circle at top left, #ffdce7 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #ffe5ec 0%, transparent 35%),
+                #fff8fa;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: appear 1.5s ease forwards;
+        }
+
+        .small-title {
+            color: #c95b79;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(3rem, 9vw, 7rem);
+            color: #7c3049;
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #d8587a;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #79525e;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        .hero-heart {
+            font-size: 4rem;
+            margin-top: 35px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.15);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.12);
+            }
+        }
+
+        .scroll-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            background: #d8587a;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(216, 88, 122, 0.25);
+            transition: 0.3s;
+        }
+
+        .scroll-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(216, 88, 122, 0.35);
+        }
+
+        /* =========================
+           ÁLTALÁNOS SZEKCIÓ
+        ========================= */
+
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 110px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            color: #7c3049;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 60px;
+            color: #85636d;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* =========================
+           TÖRTÉNET
+        ========================= */
+
+        .story {
+            background: #fff;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #edb3c2;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 20px 40px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #d8587a;
+            border: 4px solid #fff;
+            border-radius: 50%;
+            top: 30px;
+            box-shadow: 0 0 0 3px #edb3c2;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -9px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -9px;
+        }
+
+        .timeline-card {
+            background: #fff8fa;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(100, 40, 60, 0.07);
+        }
+
+        .timeline-card h3 {
+            color: #c44d6d;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .timeline-card p {
+            color: #765a64;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           GALÉRIA
+        ========================= */
+
+        .gallery-section {
+            background:
+                linear-gradient(180deg, #fff8fa, #fff0f4);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .photo {
+            height: 300px;
+            border-radius: 22px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(80, 30, 50, 0.12);
+            transition: 0.4s;
+            background: #f3dce3;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .photo:hover {
+            transform: translateY(-8px);
+        }
+
+        .photo:hover img {
+            transform: scale(1.08);
+        }
+
+        /* =========================
+           LIGHTBOX
+        ========================= */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(35, 15, 22, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 500;
+            padding: 30px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .close {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* =========================
+           BEFEJEZÉS
+        ========================= */
+
+        .ending {
+            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background:
+                radial-gradient(circle, #ffdce7 0%, #fff8fa 65%);
+        }
+
+        .ending-content {
+            max-width: 750px;
+        }
+
+        .ending h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            color: #7c3049;
+            margin-bottom: 25px;
+        }
+
+        .ending p {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #765a64;
+        }
+
+        .surprise-button {
+            border: none;
+            background: #d8587a;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            margin-top: 35px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(216, 88, 122, 0.25);
+        }
+
+        .surprise-button:hover {
+            transform: scale(1.05);
+        }
+
+        .secret-message {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 20px;
+            animation: appear 0.8s ease;
+        }
+
+        .secret-message.show {
+            display: block;
+        }
+
+        .secret-message strong {
+            display: block;
+            color: #c44d6d;
+            font-family: Georgia, serif;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 30px 20px;
+            background: #7c3049;
+            color: #ffeef3;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* =========================
+           ANIMÁCIÓ
+        ========================= */
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           MOBIL
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            nav {
+                gap: 15px;
+                padding: 14px 10px;
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            section {
+                padding: 80px 18px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even),
+            .timeline-item:nth-child(odd) {
+                width: 100%;
+                left: 0;
+                text-align: left;
+                padding-left: 40px;
+                padding-right: 0;
+            }
+
+            .timeline-item .timeline-dot,
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 1px;
+                right: auto;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .photo {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Lebegő szívek -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- Navigáció -->
+    <nav>
+        <a href="#kezdooldal">Kezdőlap</a>
+        <a href="#tortenet">A mi történetünk</a>
+        <a href="#kepek">Emlékeink</a>
+    </nav>
+
+    <!-- =========================
+         KEZDŐOLDAL
+    ========================== -->
+
+    <header class="hero" id="kezdooldal">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                Egy különleges nap 
+            </div>
+
+            <!-- IDE ÍRD A BARÁTNŐD NEVÉT -->
+            <h1>
+                Boldog <span>1.</span><br>
+                évfordulót!
+            </h1>
+
+            <!-- IDE ÍRHATSZ SAJÁT SZÖVEGET -->
+            <p>
+                Egy év, rengeteg közös emlék,
+                megszámlálhatatlan mosoly,
+                és még rengeteg közös pillanat vár ránk.
+            </p>
+
+            <a href="#tortenet" class="scroll-button">
+                Nézd meg a történetünket ↓
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         TÖRTÉNET
+    ========================== -->
+
+    <section class="story" id="tortenet">
+
+        <div class="container">
+
+            <h2 class="section-title reveal">
+                A mi történetünk
+            </h2>
+
+            <p class="section-subtitle reveal">
+                Néhány pillanat abból az egy évből,
+                amit együtt tölthettünk.
+            </p>
+
+
+            <div class="timeline">
+
+                <!-- ELSŐ ESEMÉNY -->
+
+                <div class="timeline-item reveal">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-card">
+
+                        <h3>Az első találkozás ❤️</h3>
+
+                        <p>
+                            Ide írhatod le, hogyan találkoztatok először.
+                            Hol voltatok? Mit gondoltál róla?
+                            Mi volt az első benyomásod?
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MÁSODIK ESEMÉNY -->
+
+                <div class="timeline-item reveal">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-card">
+
+                        <h3>Az első randi 🌹</h3>
+
+                        <p>
+                            Írd ide az első randitok történetét.
+                            Egy apró részlet is tökéletes lehet,
+                            amit csak ti ketten értetek.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HARMADIK ESEMÉNY -->
+
+                <div class="timeline-item reveal">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-card">
+
+                        <h3>Egy emlékezetes nap ✨</h3>
+
+                        <p>
+                            Ide kerülhet egy olyan közös élmény,
+                            amelyre mindig mosolyogva fogtok visszagondolni.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NEGYEDIK ESEMÉNY -->
+
+                <div class="timeline-item reveal">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-card">
+
+                        <h3>1 év együtt ❤️</h3>
+
+                        <p>
+                            És elérkeztünk az első évfordulónkhoz.
+                            Egy év, ami rengeteg szép emléket adott nekünk.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOTÓGALÉRIA
+    ========================== -->
+
+    <section class="gallery-section" id="kepek">
+
+        <div class="container">
+
+            <h2 class="section-title reveal">
+                Közös emlékeink 📸
+            </h2>
+
+            <p class="section-subtitle reveal">
+                Néhány kép abból a sok-sok pillanatból,
+                amit együtt éltünk át.
+            </p>
+
+
+            <div class="gallery">
+
+                
+                <div>
+                <div class="photo reveal">
+                    <img src="1cd5242d-e69e-41c6-a0e4-76e00982cebf.jpg" alt="összebujva a toban"/>
+
+                </div>
+                <p>akármennyire nem látható de te az én szemembe jobban ragyogsz mint a hold ❤️ </p>
+                </div>
+                
+                <div>
+                <div class="photo reveal">
+                    <img src="4128b4ac-16fc-4c06-bda2-2a833340dbda.jpg" alt="az elsö közös nyarunk"/>
+                </div>
+                <p>miattad volt ez a nyár is szép ❤️ </p>
+                </div>
+                
+                <div>
+                <div class="photo reveal">
+                    <img src="8696478b-9168-45a5-b58a-043df0291181.jpg" alt="bomba csajszi"/>
+                </div>
+                     <p>Ho hó! Ki ez a sexy csajszí a kabátomba? mert nekem be jön! ❤️ </p>
+                </div>
+                     
+                <div>
+                <div class="photo reveal">
+                    <img src="9e26e3ef-6b84-40a9-8b96-9a1581f4ec41.jpg" alt="az első tala miután össze jöttünk"/>
+                </div>
+                     <p>az első alkalom mikor naszályra jöttél hiába csak pár perce ❤️ </p>
+                </div>
+                     
+                <div>
+                <div class="photo reveal">
+                    <img src="a70f1ede-ced7-4964-a1a7-9e852c809dc5.jpg" alt="kárpátia"/>
+                </div>
+                     <p>nem készültem normális ruházattal de legalább egy újabb szép emlék csak is miattad ❤️</p>
+                </div>
+                     
+                <div>
+                <div class="photo reveal">
+                    <img src="adcf4dd7-d271-4df9-ac95-3a397180fe07.jpg" alt="fa rajz"/>
+                </div>
+                                 <p>az első falba karcolásom/vésésem és ez is veled ❤️</p>
+                </div>                 
+                       
+                <div>
+                <div class="photo reveal">
+                    <img src="b97128fb-8a10-42e4-8c4f-1b32b5fb019f.jpg" alt="cukik"/>
+                </div>
+                      <p>egy pár év múlva remélem a kicsi énünket tudod majd fogni ❤️ </p>
+                </div> 
+                      
+                <div>
+                <div class="photo reveal">
+                    <img src="ced0903c-18e4-4631-888f-936c6af0c033.jpg" alt="első randi tervem"/>
+                </div>
+                      <p>az első randi amit én terveztem. és nem ment füstbe a tervem. csak azért mert ott voltál velem ❤️ </p>
+                </div>      
+                      
+                <div>
+                <div class="photo reveal">
+                    <img src="e4c158ad-e714-4fa6-9cfb-9463ac5176db.jpg" alt="telefon lopo"/>
+                </div>
+                     <p>csak egy random északák egyike még is sokat jelent nekem ❤️ </p>
+                </div>
+                     
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BEFEJEZÉS
+    ========================== -->
+
+    <section class="ending" id="befejezes">
+
+        <div class="ending-content reveal">
+
+            <div class="hero-heart">
+                ❤️
+            </div>
+
+            <h2>
+                És ez még csak<br>
+                az első év volt...
+            </h2>
+
+            <p>
+                Köszönöm, hogy mellettem vagy,
+                hogy együtt nevetünk, együtt álmodunk,
+                és hogy minden egyes nap egy kicsit szebbé teszed az életem.
+                <br><br>
+                Remélem, hogy ez csak az első fejezet
+                a közös történetünkből. ❤️
+            </p>
+
+            <button class="surprise-button" id="surpriseButton">
+                Van még egy meglepetés... ❤️
+            </button>
+
+            <div class="secret-message" id="secretMessage">
+
+                <strong>
+                    Szeretlek! ❤️
+                </strong>
+
+                És nagyon boldog vagyok,
+                hogy téged választott az élet mellém.
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            Készült szeretettel ❤️
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         LIGHTBOX
+    ========================== -->
+
+    <div class="lightbox" id="lightbox">
+
+        <div class="close" id="close">
+            ×
+        </div>
+
+        <img id="lightboxImage" src="" alt="Nagyított kép">
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           LEBEGŐ SZÍVEK
+        ========================== */
+
+        const heartsContainer = document.getElementById("hearts");
+
+        const heartSymbols = ["❤️", "💕", "💗", "💖", "♡"];
+
+        for (let i = 0; i < 25; i++) {
+
+            const heart = document.createElement("div");
+
+            heart.classList.add("heart");
+
+            heart.innerText =
+                heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+
+            heart.style.left =
+                Math.random() * 100 + "%";
+
+            heart.style.fontSize =
+                (12 + Math.random() * 20) + "px";
+
+            heart.style.animationDuration =
+                (8 + Math.random() * 12) + "s";
+
+            heart.style.animationDelay =
+                Math.random() * 10 + "s";
+
+            heartsContainer.appendChild(heart);
+        }
+
+
+        /* =========================
+           SCROLL ANIMÁCIÓ
+        ========================== */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const observer =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("visible");
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.15
+                }
+            );
+
+
+        revealElements.forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+
+        /* =========================
+           FOTÓ LIGHTBOX
+        ========================== */
+
+        const photos =
+            document.querySelectorAll(".photo img");
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxImage =
+            document.getElementById("lightboxImage");
+
+        const closeButton =
+            document.getElementById("close");
+
+
+        photos.forEach(photo => {
+
+            photo.addEventListener("click", () => {
+
+                lightboxImage.src = photo.src;
+
+                lightbox.classList.add("active");
+
+            });
+
+        });
+
+
+        closeButton.addEventListener("click", () => {
+
+            lightbox.classList.remove("active");
+
+        });
+
+
+        lightbox.addEventListener("click", (event) => {
+
+            if (event.target === lightbox) {
+
+                lightbox.classList.remove("active");
+
+            }
+
+        });
+
+
+        /* ESC BILLENTYŰ */
+
+        document.addEventListener("keydown", (event) => {
+
+            if (event.key === "Escape") {
+
+                lightbox.classList.remove("active");
+
+            }
+
+        });
+
+
+        /* =========================
+           MEGLEPETÉS GOMB
+        ========================== */
+
+        const surpriseButton =
+            document.getElementById("surpriseButton");
+
+        const secretMessage =
+            document.getElementById("secretMessage");
+
+
+        surpriseButton.addEventListener("click", () => {
+
+            secretMessage.classList.toggle("show");
+
+            if (secretMessage.classList.contains("show")) {
+
+                surpriseButton.innerText =
+                    "❤️";
+
+            } else {
+
+                surpriseButton.innerText =
+                    "Van még egy meglepetés... ❤️";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
